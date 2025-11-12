@@ -1,0 +1,276 @@
+/* 
+   RESET & BASE
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFA680; /* Couleur pêche */
+    color: #FF5C14;
+    line-height: 1.6;
+}
+
+/* 
+   NAVIGATION BAR
+   ========================================== */
+.navbar {
+    background-color: #FF8a1b;
+    padding: 20px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.site-title {
+    background-color: #Fde880;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    border: 2px solid #d0ff62;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    background-color: #98DA00;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #FF5C14;
+}
+
+/* 
+   CONTAINER PRINCIPAL
+   ========================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 
+   HERO SECTION (Introduction)
+   ========================================== */
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+   SECTION FILMS
+   ========================================== */
+.films-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* 
+   GRID DES FILMS 
+   ========================================== */
+.films-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+/* Si on a exactement 5 films, centrer les 2 derniers */
+.films-grid .film-card:nth-child(4) {
+    grid-column: 1 / 2;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.films-grid .film-card:nth-child(5) {
+    grid-column: 2 / 3;
+    margin-right: auto;
+    margin-left: 15px;
+}
+
+/* 
+   CARTE DE FILM (style jaune avec bordure turquoise)
+   ========================================== */
+.film-card {
+    width: 100%;
+    max-width: 250px;
+    background-color: #FFFAD6; /* Jaune */
+    border: 3px solid #7FB3B5; /* Turquoise */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+}
+
+/* En-tête de la carte : titre + 3 boutons pour plus tard */
+.film-card-header {
+    background-color: #FFFAD6;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #7FB3B5;
+}
+
+.film-card-header h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Les 3 petits cercles oranges pour accueilir les "j'aime", je n'aime pas, et j'ai pas du tout aimé */
+.card-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btn-circle.orange {
+    background-color: #FF9933;
+}
+
+/* Image du film à recadrer ou trouver d'autres images sur le net*/
+.film-card-image {
+    width: 100%;
+    height: 180px;
+    background-color: #FFFAD6;
+    position: relative;
+    overflow: hidden;
+}
+
+.film-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 
+   MESSAGE "AUCUN FILM"
+   ========================================== */
+.no-films {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    grid-column: 1 / -1; /* Prend toute la largeur */
+}
+
+/* 
+   FOOTER
+   ========================================== */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+
+.legal-button {
+    background-color: #98DA00;
+    border: 2px solid #1FD224;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.legal-button:hover {
+    background-color: #80EC84;
+}
+
+/* IA pour le responsiv : l'exercice est basé sur la manipulation de MySql et PHP
+ ============================================
+   RESPONSIVE - TABLETTES
+   ========================================== */
+@media (max-width: 768px) {
+    .films-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    /* Annule le centrage des films 4 et 5 sur tablette */
+    .films-grid .film-card:nth-child(4),
+    .films-grid .film-card:nth-child(5) {
+        grid-column: span 1;
+        margin: 0 auto;
+    }
+    
+    .hero h2 {
+        font-size: 28px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - MOBILES
+   ========================================== */
+@media (max-width: 480px) {
+    .films-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-title {
+        font-size: 20px;
+    }
+    
+    .hero h2 {
+        font-size: 24px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

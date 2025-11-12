@@ -13,6 +13,11 @@ Thumbs.db
 *.swo
 *~
 
+# Fichiers temporaires de développement
+add_test_data.php
+test_*.php
+
+
 # IDE
 .vscode/
 .idea/
