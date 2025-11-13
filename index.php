@@ -1,5 +1,9 @@
 <?php
 require_once 'config/database.php'; // permet d'indiquer ici : depuis le fichier "index", va à la racine, puis dans le dossier config/, prends le fichier database.php et charge le.
+require_once 'config/session.php';
+
+//Test de connexion des liens de navigation de la nav bar :  "Oups" j'ai supprimé le code teste, je ne peux donc pas vous le montrer
+
 
 /*test pour vérifier que le chargement et que tout fonctionne
 
@@ -29,20 +33,8 @@ $films = $query->fetchAll(); // ici je lui demande de récupérer tous les résu
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
-        <!--En-tête avec navigation-->
-        <header>
-            <nav class="navbar">
-                <div class="nav-container">
-                    <h1 class="site-title">NETKO</h1>
-                    <ul class="nav-links">
-                        <li><a href="index.php">Accueil</a></li>
-                        <li><a href="films.php">Consulter notre sélection</a></li>
-                        <li><a href="inscription.php">Inscription</a></li>
-                        <li><a href="connexion.php">Connexion</a></li>
-                    </ul>    
-                </div>
-            </nav>
-        </header>
+        <!-- Navigation -->
+        <?php require_once 'includes/navbar.php'; ?>
         <!--Contenu principal de la page -->
         <main class="container">
             <section class="hero" aria-labelledby="hero-title">
