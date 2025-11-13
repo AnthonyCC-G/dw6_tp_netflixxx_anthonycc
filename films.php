@@ -2,6 +2,12 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// requête permettant de récupérer tous les films présents dans la BDD (sans la limite des 5 premiers contrairement au premier exercice du TP)
+// depuis le début j'utilise $pdo et ici je reste sur cette utilisation 
+$query = $pdo->prepare("SELECT * FROM film ORDER BY id DESC");
+$query->execute();
+$films = $query->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +25,32 @@ require_once 'config/session.php'; // script qui gère les sessions
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal de la page -->
         <main class="container">
-            <section class="hero">
-                <h2>Liste complète des "films"</h2>
-                <p>Cette page sera développée dans l'exercice 4.</p>
+            <section class="films-section" aria-labelledby="films-title">
+                <h2 id="films-title">Tous nos sketches</h2>
+                <div class="films-grid">
+                    <?php foreach ($films as $film): ?>
+                        <article class="film-card">
+                            <header class="film-card-header">
+                                <h3><?php echo strtoupper(htmlspecialchars($film['title'])); ?></h3>
+                                <div class="card-buttons" aria-hidden="true">
+                                    <span class="btn-circle orange"></span>
+                                    <span class="btn-circle orange"></span>
+                                    <span class="btn-circle orange"></span>
+                                </div>
+                            </header>
+                            <div class="film-card-image">
+                                <img src="<?php echo htmlspecialchars($film['urlphoto']); ?>" alt="Miniature du sketch : <?php echo htmlspecialchars($film['title']); ?>">
+                            </div>
+                            <!-- Lien vers la page de détails -->
+                            <a href="film_details.php?id=<?php echo $film['id']; ?>" class="btn-details">
+                                Consulter ce sketch
+                            </a>
+                        </article>
+                    <?php endforeach; ?>
+                    <?php if (empty($films)): ?>
+                        <p class="no-films"> Aucun Sketch disponible pour le moment.</p>
+                    <?php endif; ?>
+                </div>
             </section>
         </main>
         <!-- Pied de page -->
