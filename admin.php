@@ -7,6 +7,9 @@ if (!isLoggedIn()) {
     header('Location: connexion.php');
     exit;
 }
+
+checkSessionExpiration(); // pour vérifier si la session a expiré
+
 ?>
 
 <!DOCTYPE html>

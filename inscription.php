@@ -2,22 +2,23 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+
 // variable pour les erreurs
 $error = '';
 
-// Récupère les informations sur le serveur ,vérifie qu'une requête POST est bien présente
-// puis vérifie les champs s'ils sont vides, 
-// si c'est le cas affiche un message d'erreur
+// Récupère les informations sur le serveur , vérifie qu'une requête POST est bien présente
+// Puis vérifie les champs s'ils sont vides, 
+// Si c'est le cas affiche un message d'erreur
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
     $login = $_POST['login'];
     $password = $_POST['password'];
 
     if (empty($login) || empty($password)) { // Vérifie si les champs sont vides
-        $error = "Tous les champs sont obligatoires."; // message d'erreur
+        $error = "Tous les champs sont obligatoires."; // Si login et password sont vide : message d'erreur
     } else {
         $query = $pdo->prepare("SELECT * FROM user WHERE login = :login"); // vérifie si le login existe déjà - requête vers la BDD
         $query->execute(['login' => $login]); // compare le login saisie avec les login dans la bdd
-        $userExiste = $query->fetch(); //récupère l'info
+        $userExiste = $query->fetch(); // récupère l'info
 
         if ($userExiste) { 
             $error = "Ce login est déjà utilisé."; // si le login existe déjà = message d'erreur
