@@ -4,6 +4,7 @@
 // Ressource : https://laconsole.dev/blog/fonctions-utilitaires#:~:text=Aussi%20couramment%20appel%C3%A9es%20%C2%AB%20utils%20%C2%BB%20ou,diff%C3%A9rentes%20parties%20d'une%20application. (Fonction helper)
 // principes du DRY (don't repeat yourself) et SRP (single responsibility principle)
 // Ressource : Claude IA - by Anthropic
+// Cours reçu de l'école EEDN et Maheva D.
 // Ressource : https://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes : SESSION START/EXPIRE - StackOverflow
 // Pour ce TP, le renouvellement de session n'est pas utile mais principe du renouvellement de session comprit mais pas codé
 
