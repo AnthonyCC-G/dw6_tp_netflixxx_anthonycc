@@ -4,6 +4,9 @@
 // Ressources : https://www.php.net/manual/en/function.password-verify.php : pour le PASSWORD_VERIFY
 // Ressource : Claude IA - by Anthropic
 // Ressource : https://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes : Expiration de la session : Stack overflow (SESSION PHP)
+// Cours reçu de l'école EEDN et Maheva D.
+// Ressource : Claude IA - by Anthropic
+
 
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions

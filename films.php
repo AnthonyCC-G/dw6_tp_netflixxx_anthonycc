@@ -1,4 +1,10 @@
 <?php
+
+// Ressource : https://www.php.net/manual/fr/function.strtoupper.php : strtoupper 
+// Cours reçu de l'école EEDN et Maheva D.
+// Ressource : Claude IA - by Anthropic
+
+
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
@@ -6,7 +12,7 @@ require_once 'config/session.php'; // script qui gère les sessions
 // depuis le début j'utilise $pdo et ici je reste sur cette utilisation 
 $query = $pdo->prepare("SELECT * FROM film ORDER BY id DESC");
 $query->execute();
-$films = $query->fetchAll();
+$films = $query->fetchAll(); // récupère tout
 
 ?>
 

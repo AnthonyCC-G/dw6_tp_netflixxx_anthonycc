@@ -1,4 +1,9 @@
 <?php
+
+// Cours reçu de l'école EEDN et Maheva D.
+// Ressource : Claude IA - by Anthropic
+
+
 require_once 'config/database.php'; // permet d'indiquer ici : depuis le fichier "index", va à la racine, puis dans le dossier config/, prends le fichier database.php et charge le.
 require_once 'config/session.php';
 

@@ -1,4 +1,9 @@
 <?php
+
+// Ressource : https://www.php.net/manual/fr/function.password-hash.php : Password Hash
+// Cours reçu de l'école EEDN et Maheva D.
+// Ressource : Claude IA - by Anthropic
+
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
