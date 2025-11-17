@@ -36,26 +36,30 @@ if (!$film) {
         <meta name="description" content="Netflix du Rire - Découvrez les meilleurs sketchs d'humoristes français">
         <meta name="keywords" content="humour, sketches, comédie, stand-up, rire">
         <title><?php echo htmlspecialchars($film['title']); ?> - NETKO</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles1.css">
+        <link rel="stylesheet" href="assets/css/layout-pako.css">
     </head>
     <body>
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal : détails du film -->
-        <main class="container">
+        <main class="main-layout container">
+        <div class="content-zone">
             <article class="film-details">
                 <h2><?php echo strtoupper(htmlspecialchars($film['title'])); ?></h2>
                 <div class="film-content">
-                    <!-- Image du sketch -->
+                    <!-- Photo -->
                     <div class="film-photo">
-                        <img src="<?php echo htmlspecialchars($film['urlphoto']); ?>" alt="<?php echo htmlspecialchars($film['title']); ?>">
+                        <img src="<?php echo htmlspecialchars($film['urlphoto']); ?>" 
+                            alt="<?php echo htmlspecialchars($film['title']); ?>">
                     </div>
-                    <!-- Description du sketch -->
+                    
+                    <!-- Description -->
                     <div class="film-description">
                         <h3>Description</h3>
                         <p><?php echo nl2br(htmlspecialchars($film['description'])); ?></p>
                     </div>
-                    <!-- Vidéo YouTube intégrée -->
+                    <!-- Vidéo -->
                     <div class="video-section">
                         <h3>Regarder le sketch</h3>
                         <div class="video-container">
@@ -63,13 +67,19 @@ if (!$film) {
                         </div>
                     </div>
                 </div>
-                <!-- Bouton retour (en dehors de film-content) -->
                 <a href="films.php" class="btn-back">← Retour à la liste des sketches</a>
             </article>
-        </main>
-        <!-- Pied de page -->
-        <footer class="footer">
-            <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
-        </footer>
-    </body>
+        </div>
+        <!-- Pako -->
+        <aside class="mascotte-zone" aria-label="Mascotte Pako">
+            <img src="assets/images/pako-animated.gif" 
+                alt="Pako, mascotte de Netflix du Rire" 
+                class="mascotte-pako"
+                loading="eager">
+        </aside>
+    </main>
+    <footer class="footer">
+        <button class="legal-button">Mentions légales</button>
+    </footer>
+</body>
 </html>

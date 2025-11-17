@@ -59,7 +59,7 @@ if (isset($_GET['error'])) {
         <meta name="description" content="Netflix du Rire - Découvrez les meilleurs sketchs d'humoristes français">
         <meta name="keywords" content="humour, sketches, comédie, stand-up, rire">
         <title>Espace Admin - NETKO</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles1.css">
     </head>
     <body>
         <!-- Navigation -->
