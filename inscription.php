@@ -7,6 +7,13 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
+
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
 
 // variable pour les erreurs
 $error = '';
@@ -49,9 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta name="description" content="Netflix du Rire - Découvrez les meilleurs sketchs d'humoristes français">
         <meta name="keywords" content="humour, sketches, comédie, stand-up, rire">
         <title>Inscription - NETKO</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles1.css">
     </head>
-    <body>
+    <body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal de la page -->
@@ -80,5 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <footer class="footer">
             <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
         </footer>
+        <!-- JavaScript pour le toggle du thème -->
+        <script src="assets/js/theme-toggle.js"></script>
     </body>
 </html>

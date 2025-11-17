@@ -1,0 +1,235 @@
+/* ==========================================
+   LAYOUT AVEC MASCOTTE PAKO
+   Chargé uniquement sur: index.php, films.php, film_details.php
+   Par Anthony - Projet TP Netflix
+   ========================================== */
+
+/* ==========================================
+   SURCHARGE DU CONTAINER
+   ========================================== */
+
+/* Container plus large pour accueillir Pako */
+.container {
+    max-width: 1400px;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL AVEC PAKO
+   ========================================== */
+
+.main-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Zone de contenu (gauche) - Cartes de films */
+.content-zone {
+    flex: 1;
+    min-width: 0; /* Important pour éviter débordement */
+}
+
+/* Zone mascotte (droite) - Pako */
+.mascotte-zone {
+    flex: 0 0 400px; /* Largeur fixe de 400px */
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    max-height: calc(100vh - 40px);
+}
+
+/* ==========================================
+   PAKO - MASCOTTE ANIMÉE
+   ========================================== */
+
+.mascotte-pako {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 25px rgba(255, 94, 0, 0.4));
+    animation: subtle-bounce 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+/* Animation de rebond vertical subtil */
+@keyframes subtle-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Effet au survol (optionnel - légère amplification) */
+.mascotte-pako:hover {
+    animation-play-state: paused;
+    transform: scale(1.02) translateY(-5px);
+}
+
+/* Désactiver animation si préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+    .mascotte-pako {
+        animation: none !important;
+    }
+}
+
+/* ==========================================
+   GRID DES FILMS ADAPTÉ AVEC PAKO
+   ========================================== */
+
+/* Grid à 3 colonnes quand Pako est présent */
+.films-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 25px;
+}
+
+/* ==========================================
+   RESPONSIVE - DESKTOP LARGE (1200px+)
+   ========================================== */
+
+@media (min-width: 1200px) {
+    .main-layout {
+        flex-direction: row;
+    }
+    
+    .mascotte-zone {
+        display: block;
+        flex: 0 0 400px;
+    }
+    
+    .films-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - LAPTOP (992px - 1199px)
+   ========================================== */
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .mascotte-zone {
+        flex: 0 0 350px; /* Pako plus petit */
+    }
+    
+    .films-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - TABLETTE (768px - 991px)
+   ========================================== */
+
+@media (max-width: 991px) and (min-width: 769px) {
+    .mascotte-zone {
+        flex: 0 0 300px; /* Pako encore plus petit */
+    }
+    
+    .main-layout {
+        gap: 30px;
+    }
+    
+    .films-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - MOBILE (768px et moins)
+   PAKO MASQUÉ POUR PERFORMANCES
+   ========================================== */
+
+@media (max-width: 768px) {
+    /* Masquer complètement Pako sur mobile */
+    .mascotte-zone {
+        display: none;
+    }
+    
+    /* Layout redevient classique (1 colonne) */
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .content-zone {
+        width: 100%;
+    }
+    
+    .films-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - PETIT MOBILE (480px et moins)
+   ========================================== */
+
+@media (max-width: 480px) {
+    .films-grid {
+        grid-template-columns: 1fr; /* 1 seule colonne */
+    }
+}
+
+/* ==========================================
+   MODE IMPRESSION - MASQUER PAKO
+   ========================================== */
+
+@media print {
+    .mascotte-zone {
+        display: none;
+    }
+    
+    .main-layout {
+        display: block;
+    }
+}
+
+/* ==========================================
+   AJUSTEMENTS POUR PAGE DÉTAILS
+   ========================================== */
+
+/* Sur la page détails, Pako accompagne la consultation */
+.film-details + .mascotte-zone {
+    margin-top: 0;
+}
+
+/* ==========================================
+   OPTIMISATIONS PERFORMANCES
+   ========================================== */
+
+/* Utiliser GPU pour l'animation */
+.mascotte-pako {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Lazy loading natif pour Pako */
+img.mascotte-pako {
+    loading: eager; /* Charger immédiatement car élément important */
+}
+
+/* ==========================================
+   NOTES DE DÉVELOPPEMENT
+   ========================================== */
+
+/*
+ * Ce fichier CSS est UNIQUEMENT chargé sur :
+ * - index.php (page d'accueil)
+ * - films.php (liste complète)
+ * - film_details.php (détails d'un sketch)
+ *
+ * Les autres pages (inscription, connexion, admin) 
+ * n'utilisent QUE styles.css
+ *
+ * Pako est masqué sur mobile (≤768px) pour :
+ * - Améliorer les performances
+ * - Économiser la bande passante
+ * - Optimiser l'espace d'écran limité
+ */
+
+
+
+
+
+

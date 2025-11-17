@@ -5,6 +5,15 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
+
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
+
+
 // Récupération de l'ID du film
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: films.php');// si pas d'ID ou ID vide redirection vers la liste des films
@@ -36,26 +45,30 @@ if (!$film) {
         <meta name="description" content="Netflix du Rire - Découvrez les meilleurs sketchs d'humoristes français">
         <meta name="keywords" content="humour, sketches, comédie, stand-up, rire">
         <title><?php echo htmlspecialchars($film['title']); ?> - NETKO</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles1.css">
+        <link rel="stylesheet" href="assets/css/layout-pako.css">
     </head>
-    <body>
+    <body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal : détails du film -->
-        <main class="container">
+        <main class="main-layout container">
+        <div class="content-zone">
             <article class="film-details">
                 <h2><?php echo strtoupper(htmlspecialchars($film['title'])); ?></h2>
                 <div class="film-content">
-                    <!-- Image du sketch -->
+                    <!-- Photo -->
                     <div class="film-photo">
-                        <img src="<?php echo htmlspecialchars($film['urlphoto']); ?>" alt="<?php echo htmlspecialchars($film['title']); ?>">
+                        <img src="<?php echo htmlspecialchars($film['urlphoto']); ?>" 
+                            alt="<?php echo htmlspecialchars($film['title']); ?>">
                     </div>
-                    <!-- Description du sketch -->
+                    
+                    <!-- Description -->
                     <div class="film-description">
                         <h3>Description</h3>
                         <p><?php echo nl2br(htmlspecialchars($film['description'])); ?></p>
                     </div>
-                    <!-- Vidéo YouTube intégrée -->
+                    <!-- Vidéo -->
                     <div class="video-section">
                         <h3>Regarder le sketch</h3>
                         <div class="video-container">
@@ -63,13 +76,21 @@ if (!$film) {
                         </div>
                     </div>
                 </div>
-                <!-- Bouton retour (en dehors de film-content) -->
                 <a href="films.php" class="btn-back">← Retour à la liste des sketches</a>
             </article>
-        </main>
-        <!-- Pied de page -->
-        <footer class="footer">
-            <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
-        </footer>
-    </body>
+        </div>
+        <!-- Pako -->
+        <aside class="mascotte-zone" aria-label="Mascotte Pako">
+            <img src="assets/images/pako-animated.gif" 
+                alt="Pako, mascotte de Netflix du Rire" 
+                class="mascotte-pako"
+                loading="eager">
+        </aside>
+    </main>
+    <footer class="footer">
+        <button class="legal-button">Mentions légales</button>
+    </footer>
+    <!-- JavaScript pour le toggle du thème -->
+    <script src="assets/js/theme-toggle.js"></script>
+</body>
 </html>
