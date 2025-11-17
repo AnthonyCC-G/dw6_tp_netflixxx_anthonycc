@@ -2,6 +2,15 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
+
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
+
+
 // Si l'utilisateur est redirigé, permet une toute petite protection
 if (!isLoggedIn()) {
     header('Location: connexion.php');
@@ -61,7 +70,7 @@ if (isset($_GET['error'])) {
         <title>Espace Admin - NETKO</title>
         <link rel="stylesheet" href="assets/css/styles1.css">
     </head>
-    <body>
+    <body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal de la page -->
@@ -111,5 +120,7 @@ if (isset($_GET['error'])) {
         <footer class="footer">
             <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
         </footer>
+        <!-- JavaScript pour le toggle du thème -->
+        <script src="assets/js/theme-toggle.js"></script>
     </body>
 </html>

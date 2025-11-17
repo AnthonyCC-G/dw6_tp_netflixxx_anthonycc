@@ -7,6 +7,15 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
+
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
+
+
 // requête permettant de récupérer tous les films présents dans la BDD
 $query = $pdo->prepare("SELECT * FROM film ORDER BY id DESC");
 $query->execute();
@@ -22,7 +31,7 @@ $films = $query->fetchAll();
     <link rel="stylesheet" href="assets/css/styles1.css">
     <link rel="stylesheet" href="assets/css/layout-pako.css">
 </head>
-<body>
+<body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
     <?php require_once 'includes/navbar.php'; ?>
     
     <!-- LAYOUT AVEC PAKO -->
@@ -75,5 +84,7 @@ $films = $query->fetchAll();
     <footer class="footer">
         <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
     </footer>
+    <!-- JavaScript pour le toggle du thème -->
+    <script src="assets/js/theme-toggle.js"></script>
 </body>
 </html>

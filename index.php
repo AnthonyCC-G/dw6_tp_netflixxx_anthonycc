@@ -11,8 +11,16 @@ require_once 'config/session.php';
 
 //Test lors du développement : pour vérification du chargement de la page avec var_dump (fait)
 
-// Requête pour notre séléction d'informations dans la bdd
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
 
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
+
+
+// Requête pour notre séléction d'informations dans la bdd
 $query = $pdo->prepare("SELECT * FROM film ORDER BY id DESC LIMIT 5"); // récupère toutes les colonnes, dans la table "film", trie par id décroissant (du plus récent au plus ancien)
 $query->execute();
 $films = $query->fetchAll(); // ici je lui demande de récupérer tous les résultats dans un tableau $films
@@ -32,7 +40,7 @@ $films = $query->fetchAll(); // ici je lui demande de récupérer tous les résu
         <link rel="stylesheet" href="assets/css/styles1.css">
         <link rel="stylesheet" href="assets/css/layout-pako.css">
     </head>
-    <body>
+    <body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!--Contenu principal de la page -->
@@ -86,5 +94,7 @@ $films = $query->fetchAll(); // ici je lui demande de récupérer tous les résu
         <footer class="footer">
             <button class="legal-button" aria-label="Afficher les mentions légales">Mentions légales</button>
         </footer>
+    <!-- JavaScript pour le toggle du thème -->
+    <script src="assets/js/theme-toggle.js"></script>
     </body>
 </html>

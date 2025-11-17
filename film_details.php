@@ -5,6 +5,15 @@
 require_once 'config/database.php'; // script qui gère la base de donnée
 require_once 'config/session.php'; // script qui gère les sessions
 
+// Récupérer le thème depuis le cookie
+$theme = $_COOKIE['user_theme'] ?? 'dark';
+
+// Validation de sécurité
+if ($theme !== 'light' && $theme !== 'dark') {
+    $theme = 'dark';
+}
+
+
 // Récupération de l'ID du film
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: films.php');// si pas d'ID ou ID vide redirection vers la liste des films
@@ -39,7 +48,7 @@ if (!$film) {
         <link rel="stylesheet" href="assets/css/styles1.css">
         <link rel="stylesheet" href="assets/css/layout-pako.css">
     </head>
-    <body>
+    <body class="<?php echo $theme === 'light' ? 'light-mode' : ''; ?>">
         <!-- Navigation -->
         <?php require_once 'includes/navbar.php'; ?>
         <!-- Contenu principal : détails du film -->
@@ -81,5 +90,7 @@ if (!$film) {
     <footer class="footer">
         <button class="legal-button">Mentions légales</button>
     </footer>
+    <!-- JavaScript pour le toggle du thème -->
+    <script src="assets/js/theme-toggle.js"></script>
 </body>
 </html>

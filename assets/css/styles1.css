@@ -59,6 +59,15 @@ body.light-mode {
     --shadow-hover: rgba(0, 0, 0, 0.25);
 }
 
+body.light-mode .navbar::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.4) 100%
+    );
+}
+
 /* ==========================================
    RESET & BASE
    ========================================== */
@@ -161,6 +170,105 @@ body {
     border-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 6px 20px rgba(255, 94, 0, 0.6);
 }
+
+/* ==========================================
+   NAVBAR - STRUCTURE AVEC BOUTON THEME
+   ========================================== */
+
+/* Wrapper pour liens + bouton */
+.nav-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Les liens restent au centre */
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   BOUTON DARK/LIGHT MODE
+   ========================================== */
+
+.theme-toggle {
+    /* Positionnement */
+    flex-shrink: 0; /* Ne rétrécit jamais */
+    
+    /* Style */
+    background-color: rgba(255, 133, 0, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%; /* Bouton rond */
+    width: 50px;
+    height: 50px;
+    
+    /* Contenu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Interactivité */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    
+    /* Accessibilité */
+    position: relative;
+}
+
+.theme-toggle:hover {
+    background-color: var(--orange-blaze-1);
+    transform: translateY(-3px) rotate(15deg); /* Petit effet fun */
+    box-shadow: 0 6px 20px rgba(255, 133, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.theme-toggle:active {
+    transform: translateY(-1px) rotate(0deg);
+}
+
+/* ==========================================
+   ICÔNES SVG (Soleil et Lune)
+   ========================================== */
+
+.icon-sun,
+.icon-moon {
+    width: 24px;
+    height: 24px;
+    color: #ffffff; /* Blanc pour contraster avec le fond orange */
+    transition: all 0.3s ease;
+}
+
+/* Par défaut (DARK MODE actif) : Afficher le SOLEIL */
+body .icon-sun {
+    display: block;
+}
+
+body .icon-moon {
+    display: none;
+}
+
+/* En LIGHT MODE : Afficher la LUNE */
+body.light-mode .icon-sun {
+    display: none;
+}
+
+body.light-mode .icon-moon {
+    display: block;
+}
+
+/* Animation de rotation au clic */
+.theme-toggle:active .icon-sun,
+.theme-toggle:active .icon-moon {
+    transform: rotate(180deg);
+}
+
 
 /* ==========================================
    CONTAINER PRINCIPAL (sans Pako)
@@ -565,22 +673,56 @@ form button[type="submit"]:active {
    RESPONSIVE - TABLETTES
    ========================================== */
 
+/* Tablette et mobile (≤768px) */
 @media (max-width: 768px) {
-    /* Navbar */
     .navbar {
-        min-height: 120px;
+        min-height: auto; /* Hauteur flexible */
+        padding: 15px 0;
     }
     
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    /* Titre NETKO */
     .site-title {
         font-size: 24px;
         padding: 10px 20px;
         letter-spacing: 2px;
+        margin-bottom: 15px;
     }
     
+    /* Wrapper liens + bouton → COLONNE */
+    .nav-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch; /* Étire les éléments */
+    }
+    
+    /* Liens de navigation → COLONNE */
     .nav-links {
         flex-direction: column;
         gap: 10px;
+        width: 100%; /* Prend toute la largeur */
     }
+    
+    .nav-links li {
+        width: 100%;
+    }
+    
+    .nav-links a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+    }
+    
+    /* Bouton de thème → CENTRÉ */
+    .theme-toggle {
+        align-self: center; /* Centré horizontalement */
+        margin-top: 10px;
+    }
+}
     
     /* Hero */
     .hero h2 {
@@ -613,10 +755,23 @@ form button[type="submit"]:active {
         padding: 20px 15px;
     }
     
-    /* Navbar */
-    .navbar {
-        min-height: 100px;
+/* Mobile très petit (≤480px) */
+    .site-title {
+        font-size: 20px;
+        padding: 8px 15px;
+        letter-spacing: 1px;
     }
+    
+    .nav-links a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+    }
+}
     
     .site-title {
         font-size: 20px;
@@ -681,7 +836,25 @@ textarea:focus-visible {
 }
 
 
+/* ==========================================
+   RESPONSIVE - BOUTON THEME
+   ========================================== */
 
-
+@media (max-width: 768px) {
+    .nav-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        order: 1; /* Liens en premier */
+    }
+    
+    .theme-toggle {
+        order: 2; /* Bouton en dessous */
+        width: 45px;
+        height: 45px;
+    }
+}
 
 
