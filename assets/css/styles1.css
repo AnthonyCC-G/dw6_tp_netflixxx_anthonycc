@@ -722,7 +722,7 @@ form button[type="submit"]:active {
         align-self: center; /* Centré horizontalement */
         margin-top: 10px;
     }
-}
+
     
     /* Hero */
     .hero h2 {
@@ -771,7 +771,6 @@ form button[type="submit"]:active {
         width: 45px;
         height: 45px;
     }
-}
     
     .site-title {
         font-size: 20px;
