@@ -67,7 +67,7 @@ tp_netflixx/
 
 ## ✅ Fonctionnalités implémentées
 
-### Exercices complétés (1 à 6)
+### Exercices complétés (1 à 7)
 
 - ✅ **Exercice 1** : Création de la base de données
 - ✅ **Exercice 2** : Page d'accueil avec les 5 derniers sketchs
@@ -75,6 +75,7 @@ tp_netflixx/
 - ✅ **Exercice 4** : Page de consultation de tous les films
 - ✅ **Exercice 5** : Système d'inscription avec hachage de mot de passe
 - ✅ **Exercice 6** : Système de connexion avec vérification sécurisée
+- ✅ **Exercice 7** : Page Admin avec upload de photos et ajout de films
 
 ### Fonctionnalités bonus implémentées
 
@@ -175,17 +176,17 @@ Fonctionnalités à tester lors de la phase d'amélioration :
 
 ## 🔜 Prochaines étapes
 
-### Exercice 7 (en cours)
-- [ ] Finaliser l'upload de photos
-- [ ] Valider les formats d'image (JPG, PNG, GIF)
-- [ ] Limiter la taille des fichiers (5 Mo)
-- [ ] Gérer les messages de succès/erreur
-
 ### Améliorations futures
-- Refactoring du code pour une meilleure organisation
-- Tests unitaires
-- Documentation API
-- Déploiement en ligne
+- [ ] Modification/suppression de films existants
+- [ ] Système de pagination pour la liste des films
+- [ ] Recherche de sketchs par titre/description
+- [ ] Catégories/tags pour organiser les sketchs
+- [ ] Finalisation du mode clair/sombre (toggle button)
+- [ ] Système de favoris utilisateur
+- [ ] Refactoring du code pour une meilleure organisation
+- [ ] Tests unitaires
+- [ ] Documentation API
+- [ ] Déploiement en ligne
 
 ## 📝 Notes de développement
 
